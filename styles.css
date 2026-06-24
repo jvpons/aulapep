@@ -32,15 +32,15 @@ img {
 .hero {
   padding: 4rem 1.5rem 3rem;
   text-align: center;
-  background: linear-gradient(180deg, rgba(79, 70, 229, 0.14), transparent 70%);
+  background: linear-gradient(180deg, rgba(102, 190, 133, 0.2), transparent 70%);
 }
 
 .hero-content {
   margin: 0 auto;
   max-width: 720px;
   padding: 3rem 2rem;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.18);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
@@ -69,6 +69,62 @@ h1 {
 
 main {
   padding: 1rem 1.5rem 3rem;
+}
+
+.bxb-page body,
+.bxb-page {
+  background: linear-gradient(180deg, #e8f6ea 0%, #f4fbf6 55%, #ffffff 100%);
+}
+
+.bxb-page .hero {
+  background: linear-gradient(180deg, rgba(102, 190, 133, 0.2), transparent 75%);
+}
+
+.bxb-page .content-page {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.content-block {
+  margin-bottom: 2rem;
+  padding: 1.75rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 28px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  box-shadow: var(--shadow);
+}
+
+.image-gallery-block {
+  background: rgba(237, 249, 238, 0.95);
+}
+
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.image-gallery figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #f8faf7;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.image-gallery img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.image-gallery figcaption {
+  padding: 0.85rem 1rem;
+  color: #2f5f3b;
+  font-size: 0.98rem;
+  font-weight: 600;
 }
 
 .tabs-section {

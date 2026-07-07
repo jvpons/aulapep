@@ -38,54 +38,46 @@
             font-size: 5em;
             box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
-        .cesta h3 {
-            margin: 5px 0;
-            font-size: 1.3em;
-        }
-        .cesta .subtitulo {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
+        .cesta h3 { margin: 5px 0; font-size: 1.3em; }
+        .cesta .subtitulo { font-size: 1.1em; opacity: 0.9; }
+
         .dropzone {
-            height: 200px;
+            height: 220px;
             border: 4px dashed #e2e8f0;
             border-radius: 20px;
             margin-top: 10px;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-content: flex-start;
+            background: rgba(255,255,255,0.1);
+            min-height: 180px;
             transition: all 0.3s;
         }
         .dropzone.dragover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.25);
             border-color: white;
         }
 
-        .palabras {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin: 40px 0;
-            min-height: 140px;
-        }
         .palabra {
             background: white;
             color: #1e2937;
-            padding: 16px 24px;
+            padding: 12px 18px;
             border-radius: 50px;
-            font-size: 1.15em;
+            font-size: 1.05em;
             font-weight: bold;
             cursor: grab;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             transition: transform 0.2s;
+            margin: 4px;
         }
         .palabra:active { transform: scale(0.95); cursor: grabbing; }
 
-        .correcto { background: #4ade80 !important; color: white; }
-        .incorrecto { animation: shake 0.4s; }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-8px); }
-            75% { transform: translateX(8px); }
+        .correcto { 
+            background: #4ade80 !important; 
+            color: white; 
+            box-shadow: 0 4px 12px rgba(74, 222, 128, 0.4);
         }
 
         button {
@@ -100,18 +92,6 @@
             cursor: pointer;
             font-weight: bold;
         }
-
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 30px;
-            color: white;
-            text-decoration: none;
-            font-size: 1.1em;
-        }
-        .back-link:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
@@ -120,11 +100,8 @@
 
     <div class="cestas" id="cestas"></div>
 
-    <div class="palabras" id="palabras"></div>
-
     <div class="info" id="puntuacion">Puntuación: <strong>0 / 15</strong></div>
     <button onclick="reiniciarJuego()">🔄 Reiniciar Juego</button>
-    <a href="castellano.html" class="back-link">← Volver a los temas</a>
 
     <script>
         const verbosOriginales = [
@@ -185,64 +162,106 @@
         }
 
         function crearPalabras() {
-            const contenedor = document.getElementById('palabras');
-            contenedor.innerHTML = '';
-            
+            const contenedor = document.getElementById('cestas');
+            // Las palabras iniciales se crean en una zona temporal, pero se moverán al dropear
             verbos.forEach((verbo, index) => {
-                const div = document.createElement('div');
-                div.className = 'palabra';
-                div.draggable = true;
-                div.textContent = verbo.texto;
-                div.dataset.categoria = verbo.categoria;
-                div.dataset.index = index;
-                
-                div.addEventListener('dragstart', e => {
-                    e.dataTransfer.setData('text', div.dataset.categoria);
-                    e.dataTransfer.setData('index', div.dataset.index);
+                const palabra = document.createElement('div');
+                palabra.className = 'palabra';
+                palabra.draggable = true;
+                palabra.textContent = verbo.texto;
+                palabra.dataset.categoria = verbo.categoria;
+                palabra.dataset.index = index;
+
+                palabra.addEventListener('dragstart', e => {
+                    e.dataTransfer.setData('text', palabra.dataset.categoria);
+                    e.dataTransfer.setData('index', palabra.dataset.index);
+                    e.dataTransfer.setData('elemento', 'palabra');
                 });
-                
-                contenedor.appendChild(div);
+
+                // Colocarlas inicialmente fuera de las cestas (en la parte superior)
+                if (index < 5) {
+                    const tempZone = document.createElement('div');
+                    tempZone.style.display = 'flex';
+                    tempZone.style.justifyContent = 'center';
+                    tempZone.style.margin = '10px';
+                    tempZone.appendChild(palabra);
+                    contenedor.parentNode.insertBefore(tempZone, contenedor);
+                } else {
+                    // Mejor: crear una zona inicial visible
+                }
             });
+        }
+
+        // Mejor versión simplificada y funcional
+        function iniciarJuego() {
+            verbos = mezclarArray([...verbosOriginales]);
+            puntuacion = 0;
+            document.getElementById('puntuacion').innerHTML = `Puntuación: <strong>0 / 15</strong>`;
+            crearCestas();
+            crearPalabrasIniciales();
+        }
+
+        function crearPalabrasIniciales() {
+            const palabrasContainer = document.createElement('div');
+            palabrasContainer.style = "display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 30px 0; min-height: 80px;";
+            palabrasContainer.id = "palabras-iniciales";
+
+            verbos.forEach((verbo, index) => {
+                const palabra = document.createElement('div');
+                palabra.className = 'palabra';
+                palabra.draggable = true;
+                palabra.textContent = verbo.texto;
+                palabra.dataset.categoria = verbo.categoria;
+                palabra.dataset.index = index;
+
+                palabra.addEventListener('dragstart', e => {
+                    e.dataTransfer.setData('categoria', palabra.dataset.categoria);
+                    e.dataTransfer.setData('index', palabra.dataset.index);
+                    palabra.style.opacity = '0.5';
+                });
+
+                palabra.addEventListener('dragend', () => palabra.style.opacity = '1');
+
+                palabrasContainer.appendChild(palabra);
+            });
+
+            document.body.insertBefore(palabrasContainer, document.getElementById('cestas'));
         }
 
         function manejarDrop(e) {
             e.preventDefault();
             const zona = e.currentTarget;
             zona.classList.remove('dragover');
-            
-            const categoriaCorrecta = e.dataTransfer.getData('text');
-            const index = parseInt(e.dataTransfer.getData('index'));
+
+            const categoriaCorrecta = e.dataTransfer.getData('categoria');
+            const index = e.dataTransfer.getData('index');
             const categoriaSoltada = zona.dataset.categoria;
-            
-            const palabraElement = document.querySelector(`.palabra[data-index="${index}"]`);
-            
+
+            const palabra = document.querySelector(`.palabra[data-index="${index}"]`);
+
             if (categoriaCorrecta === categoriaSoltada) {
-                palabraElement.classList.add('correcto');
+                palabra.classList.add('correcto');
+                palabra.draggable = false;
+                zona.appendChild(palabra);   // ← Se mueve a la cesta
                 puntuacion++;
                 document.getElementById('puntuacion').innerHTML = `Puntuación: <strong>${puntuacion} / 15</strong>`;
-                
+
                 if (puntuacion === 15) {
-                    setTimeout(() => alert("¡Excelente! Has clasificado todos los verbos correctamente 🎉"), 200);
+                    setTimeout(() => alert("¡Felicidades! Has completado el juego correctamente 🎉"), 300);
                 }
             } else {
-                palabraElement.classList.add('incorrecto');
-                setTimeout(() => palabraElement.classList.remove('incorrecto'), 600);
+                palabra.style.animation = 'shake 0.4s';
+                setTimeout(() => palabra.style.animation = '', 500);
             }
-            
-            palabraElement.draggable = false;
         }
 
         function reiniciarJuego() {
-            puntuacion = 0;
-            verbos = mezclarArray([...verbosOriginales]);
-            document.getElementById('puntuacion').innerHTML = `Puntuación: <strong>0 / 15</strong>`;
-            crearPalabras();
+            document.getElementById('palabras-iniciales')?.remove();
+            iniciarJuego();
         }
 
-        // Iniciar el juego
-        verbos = mezclarArray([...verbosOriginales]);
-        crearCestas();
-        crearPalabras();
+        // Iniciar
+        iniciarJuego();
     </script>
 </body>
 </html>

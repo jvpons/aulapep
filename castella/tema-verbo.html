@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clasifica los Verbos - Conjugaciones</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0;
+            padding: 20px;
+            color: white;
+        }
+        h1 { text-align: center; margin-bottom: 10px; }
+        .info { text-align: center; font-size: 1.2em; margin: 15px; }
+        
+        .cestas {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .cesta {
+            width: 240px;
+            text-align: center;
+        }
+        .cesta .cesta-visual {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 10px;
+            background: #f8fafc;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5em;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .cesta h3 {
+            margin: 5px 0;
+            font-size: 1.3em;
+        }
+        .cesta .subtitulo {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .dropzone {
+            height: 200px;
+            border: 4px dashed #e2e8f0;
+            border-radius: 20px;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        .dropzone.dragover {
+            background: rgba(255,255,255,0.2);
+            border-color: white;
+        }
+
+        .palabras {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+            min-height: 140px;
+        }
+        .palabra {
+            background: white;
+            color: #1e2937;
+            padding: 16px 24px;
+            border-radius: 50px;
+            font-size: 1.15em;
+            font-weight: bold;
+            cursor: grab;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+            transition: transform 0.2s;
+        }
+        .palabra:active { transform: scale(0.95); cursor: grabbing; }
+
+        .correcto { background: #4ade80 !important; color: white; }
+        .incorrecto { animation: shake 0.4s; }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+
+        button {
+            display: block;
+            margin: 30px auto;
+            padding: 14px 32px;
+            font-size: 1.1em;
+            background: white;
+            color: #4f46e5;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧺 Clasifica los Verbos por Conjugación</h1>
+    <div class="info">Arrastra cada verbo a su cesta correspondiente</div>
+
+    <div class="cestas" id="cestas"></div>
+
+    <div class="palabras" id="palabras"></div>
+
+    <div class="info" id="puntuacion">Puntuación: <strong>0 / 15</strong></div>
+    <button onclick="reiniciarJuego()">🔄 Reiniciar Juego</button>
+    <a href="castellano.html" class="back-link">← Volver a los temas</a>
+
+    <script>
+        const verbosOriginales = [
+            {texto: "Cantar", categoria: "AR"},
+            {texto: "Bailar", categoria: "AR"},
+            {texto: "Hablar", categoria: "AR"},
+            {texto: "Caminar", categoria: "AR"},
+            {texto: "Jugar", categoria: "AR"},
+            {texto: "Comer", categoria: "ER"},
+            {texto: "Beber", categoria: "ER"},
+            {texto: "Correr", categoria: "ER"},
+            {texto: "Leer", categoria: "ER"},
+            {texto: "Aprender", categoria: "ER"},
+            {texto: "Vivir", categoria: "IR"},
+            {texto: "Salir", categoria: "IR"},
+            {texto: "Dormir", categoria: "IR"},
+            {texto: "Escribir", categoria: "IR"},
+            {texto: "Decidir", categoria: "IR"}
+        ];
+
+        const categorias = [
+            {id: "AR", nombre: "Verbos en -AR", grupo: "1ª conjugación"},
+            {id: "ER", nombre: "Verbos en -ER", grupo: "2ª conjugación"},
+            {id: "IR", nombre: "Verbos en -IR", grupo: "3ª conjugación"}
+        ];
+
+        let verbos = [];
+        let puntuacion = 0;
+
+        function mezclarArray(array) {
+            return array.sort(() => Math.random() - 0.5);
+        }
+
+        function crearCestas() {
+            const contenedor = document.getElementById('cestas');
+            contenedor.innerHTML = '';
+            
+            categorias.forEach(cat => {
+                const cesta = document.createElement('div');
+                cesta.className = 'cesta';
+                cesta.innerHTML = `
+                    <div class="cesta-visual">🧺</div>
+                    <h3>${cat.nombre}</h3>
+                    <div class="subtitulo">${cat.grupo}</div>
+                    <div class="dropzone" data-categoria="${cat.id}"></div>
+                `;
+                contenedor.appendChild(cesta);
+            });
+
+            document.querySelectorAll('.dropzone').forEach(zone => {
+                zone.addEventListener('dragover', e => {
+                    e.preventDefault();
+                    zone.classList.add('dragover');
+                });
+                zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+                zone.addEventListener('drop', manejarDrop);
+            });
+        }
+
+        function crearPalabras() {
+            const contenedor = document.getElementById('palabras');
+            contenedor.innerHTML = '';
+            
+            verbos.forEach((verbo, index) => {
+                const div = document.createElement('div');
+                div.className = 'palabra';
+                div.draggable = true;
+                div.textContent = verbo.texto;
+                div.dataset.categoria = verbo.categoria;
+                div.dataset.index = index;
+                
+                div.addEventListener('dragstart', e => {
+                    e.dataTransfer.setData('text', div.dataset.categoria);
+                    e.dataTransfer.setData('index', div.dataset.index);
+                });
+                
+                contenedor.appendChild(div);
+            });
+        }
+
+        function manejarDrop(e) {
+            e.preventDefault();
+            const zona = e.currentTarget;
+            zona.classList.remove('dragover');
+            
+            const categoriaCorrecta = e.dataTransfer.getData('text');
+            const index = parseInt(e.dataTransfer.getData('index'));
+            const categoriaSoltada = zona.dataset.categoria;
+            
+            const palabraElement = document.querySelector(`.palabra[data-index="${index}"]`);
+            
+            if (categoriaCorrecta === categoriaSoltada) {
+                palabraElement.classList.add('correcto');
+                puntuacion++;
+                document.getElementById('puntuacion').innerHTML = `Puntuación: <strong>${puntuacion} / 15</strong>`;
+                
+                if (puntuacion === 15) {
+                    setTimeout(() => alert("¡Excelente! Has clasificado todos los verbos correctamente 🎉"), 200);
+                }
+            } else {
+                palabraElement.classList.add('incorrecto');
+                setTimeout(() => palabraElement.classList.remove('incorrecto'), 600);
+            }
+            
+            palabraElement.draggable = false;
+        }
+
+        function reiniciarJuego() {
+            puntuacion = 0;
+            verbos = mezclarArray([...verbosOriginales]);
+            document.getElementById('puntuacion').innerHTML = `Puntuación: <strong>0 / 15</strong>`;
+            crearPalabras();
+        }
+
+        // Iniciar el juego
+        verbos = mezclarArray([...verbosOriginales]);
+        crearCestas();
+        crearPalabras();
+    </script>
+</body>
+</html>

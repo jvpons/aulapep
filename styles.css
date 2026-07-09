@@ -207,7 +207,7 @@ img {
 }
 
 .hero-media img {
-  width: 100%;
+  width: 50%;
   border-radius: var(--radius);
   box-shadow: 0 18px 40px rgba(20, 33, 61, 0.12);
 }

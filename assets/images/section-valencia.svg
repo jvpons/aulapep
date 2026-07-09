@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-label="Il·lustració d'un llibre i un llapis per a valencià">
+  <rect width="640" height="420" rx="30" fill="#fdf8eb"/>
+  <rect x="110" y="92" width="420" height="236" rx="24" fill="#fff" stroke="#f0c97c" stroke-width="6"/>
+  <rect x="146" y="124" width="180" height="172" rx="18" fill="#f4b942"/>
+  <path d="M176 280V152" stroke="#fff" stroke-width="18" stroke-linecap="round"/>
+  <path d="M218 280V154" stroke="#fff" stroke-width="18" stroke-linecap="round"/>
+  <rect x="348" y="138" width="154" height="18" rx="9" fill="#e7b04f"/>
+  <rect x="348" y="176" width="128" height="16" rx="8" fill="#f0c97c"/>
+  <rect x="348" y="214" width="146" height="16" rx="8" fill="#f0c97c"/>
+</svg>

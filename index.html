@@ -7,65 +7,199 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="hero">
-    <div class="hero-content">
-      <p class="eyebrow">Benvinguda a l'Aula Pep</p>
-      <h1>Aula Pep</h1>
-      <p class="subtitle">Recursos i enllaços amb un entorn càlid i inspirador.</p>
-    </div>
-  </header>
+  <div class="site-shell">
+    <header class="site-header">
+      <nav class="top-nav" aria-label="Navegació principal">
+        <a class="nav-brand" href="index.html">Aula Pep</a>
+        <div class="nav-links">
+          <a href="index.html">Inici</a>
+          <a href="valencia/index.html">Valencià</a>
+          <a href="castella/index.html">Castellà</a>
+          <a href="cientificotecnologic/index.html">Científic</a>
+          <a href="social/index.html">Socials</a>
+          <a href="matematica/index.html">Matemàtica</a>
+          <a href="bxb.html">BxB</a>
+        </div>
+        <details class="mobile-nav">
+          <summary>Menú</summary>
+          <div class="mobile-nav__links">
+            <a href="index.html">Inici</a>
+            <a href="valencia/index.html">Valencià</a>
+            <a href="castella/index.html">Castellà</a>
+            <a href="cientificotecnologic/index.html">Científic</a>
+            <a href="social/index.html">Socials</a>
+            <a href="matematica/index.html">Matemàtica</a>
+            <a href="bxb.html">BxB</a>
+          </div>
+        </details>
+      </nav>
+    </header>
 
-  <main>
-    <section class="tabs-section">
-      <div class="tabs-header">
-        <h2>Pestanyes temàtiques</h2>
-        <p>Accedeix als diferents àmbits i idiomes amb un sol clic.</p>
+    <header class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <p class="eyebrow">Benvinguda a l'Aula Pep</p>
+          <h1>Recursos per a docents, amb ordre i estil</h1>
+          <p class="subtitle">Una web educativa pensada per organitzar activitats, temes i materials de forma clara i atractiva.</p>
+          <div class="hero-actions">
+            <a class="button" href="#seccions">Explorar seccions</a>
+            <a class="button-secondary" href="bxb.html">Veure BxB</a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <img src="assets/images/hero-home.svg" alt="Il·lustració d'un espai de recursos escolars" />
+        </div>
       </div>
+    </header>
 
-      <div class="tabs">
-        <a class="tab" href="#valencia">VALENCIÀ</a>
-        <a class="tab" href="#castella">CASTELLÀ</a>
-        <a class="tab" href="#cientific">CIENTÍFIC-TECNOLÒGIC</a>
-        <a class="tab" href="#social">SOCIALS</a>
-        <a class="tab" href="#bxb">BxB</a>
+    <main>
+      <section class="section-block" id="seccions">
+        <div class="section-heading">
+          <div>
+            <h2>Recursos destacats</h2>
+            <p>Propostes preparades per a una aula activa i organitzada.</p>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <article class="feature-card">
+            <h3>Materials per imprimir</h3>
+            <p>Fitxes, activitats i plantilles per preparar classes amb rapidesa.</p>
+            <a class="button" href="valencia/index.html">Veure més</a>
+          </article>
+          <article class="feature-card">
+            <h3>Projectes interdisciplinaris</h3>
+            <p>Activitats que connecten llengua, ciències i socials amb un enfocament creatiu.</p>
+            <a class="button" href="cientificotecnologic/index.html">Veure més</a>
+          </article>
+          <article class="feature-card">
+            <h3>Espai de benestar</h3>
+            <p>Propostes de benestar emocional per a alumnat i professorat.</p>
+            <a class="button" href="bxb.html">Veure més</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <h2>Per què aquesta web</h2>
+            <p>Una eina senzilla, ordenada i pensada per al dia a dia docent.</p>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <article class="info-card">
+            <h3>Organització clara</h3>
+            <p>Els continguts estan agrupats per àmbits per facilitar-ne la consulta.</p>
+          </article>
+          <article class="info-card">
+            <h3>Accés ràpid</h3>
+            <p>El menú superior i el footer permeten navegar amb facilitat des de qualsevol pàgina.</p>
+          </article>
+          <article class="info-card">
+            <h3>Adaptada a l'aula</h3>
+            <p>El disseny està pensat per ser net, atractiu i fàcil d'actualitzar.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block" id="seccions">
+        <div class="section-heading">
+          <div>
+            <h2>Àmbits temàtics</h2>
+            <p>Selecciona una secció per accedir als recursos organitzats.</p>
+          </div>
+        </div>
+
+        <div class="card-grid">
+          <article class="feature-card">
+            <div class="feature-card__image">
+              <img src="assets/images/section-valencia.svg" alt="Il·lustració de valencià" />
+            </div>
+            <h3>Valencià</h3>
+            <p>Materials i propostes per treballar la llengua i la literatura.</p>
+            <a class="button" href="valencia/index.html">Accedir</a>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__image">
+              <img src="assets/images/section-castella.svg" alt="Il·lustració de castellà" />
+            </div>
+            <h3>Castellà</h3>
+            <p>Temes clau, activitats i recursos didàctics ben organitzats.</p>
+            <a class="button" href="castella/index.html">Accedir</a>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__image">
+              <img src="assets/images/section-cientific.svg" alt="Il·lustració de ciència i tecnologia" />
+            </div>
+            <h3>Científic-Tecnològic</h3>
+            <p>Propostes pràctiques i recursos per experimentar a l'aula.</p>
+            <a class="button" href="cientificotecnologic/index.html">Accedir</a>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__image">
+              <img src="assets/images/hero-home.svg" alt="Il·lustració de socials" />
+            </div>
+            <h3>Socials</h3>
+            <p>Geografia, història i ciutadania amb una estructura senzilla.</p>
+            <a class="button" href="social/index.html">Accedir</a>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__image">
+              <img src="assets/images/hero-home.svg" alt="Il·lustració de matemàtiques" />
+            </div>
+            <h3>Matemàtica</h3>
+            <p>Activitats i recursos per practicar i resoldre problemes.</p>
+            <a class="button" href="matematica/index.html">Accedir</a>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-card__image">
+              <img src="assets/images/hero-home.svg" alt="Il·lustració de benestar emocional" />
+            </div>
+            <h3>BxB</h3>
+            <p>Recursos de benestar emocional i orientació per a la comunitat educativa.</p>
+            <a class="button" href="bxb.html">Accedir</a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <section class="section-block">
+      <div class="section-heading">
+        <div>
+          <h2>Contacte i col·laboració</h2>
+          <p>Si vols compartir recursos, suggeriments o noves propostes, aquest espai pot créixer amb tu.</p>
+        </div>
       </div>
-
-      <div class="panel-grid">
-        <article id="valencia" class="panel">
-          <h3>VALENCIÀ</h3>
-          <p>Materials, activitats i idees per treballar el valencià a l'aula.</p>
-          <a class="button" href="#">Accedeix</a>
+      <div class="card-grid">
+        <article class="info-card">
+          <h3>Comparteix materials</h3>
+          <p>Ajuda a enriquir la web amb activitats, recursos i idees útils per a l'aula.</p>
         </article>
-
-        <article id="castella" class="panel">
-          <h3>CASTELLÀ</h3>
-          <p>Recursos didàctics atractius per a la llengua i la literatura en castellà.</p>
-          <a class="button" href="castella/castellano.html">Accedeix</a>
-        </article>
-
-        <article id="cientific" class="panel">
-          <h3>CIENTÍFIC-TECNOLÒGIC</h3>
-          <p>Propostes, activitats i experiències per a ciències i tecnologia.</p>
-          <a class="button" href="#">Accedeix</a>
-        </article>
-
-        <article id="social" class="panel">
-          <h3>SOCIALS</h3>
-          <p>Continguts per geografia, història i educació social.</p>
-          <a class="button" href="#">Accedeix</a>
-        </article>
-
-        <article id="bxb" class="panel">
-          <h3>BxB</h3>
-          <p>Espai per a bones pràctiques, treball en equip i projectes compartits.</p>
-          <a class="button" href="bxb.html">Accedeix</a>
+        <article class="info-card">
+          <h3>Proposa noves seccions</h3>
+          <p>Es poden afegir nous àmbits o temes segons les necessitats del docent.</p>
         </article>
       </div>
     </section>
-  </main>
 
-  <footer class="footer">
-    <p>Aula Pep · Disseny fet per a docents</p>
-  </footer>
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="valencia/index.html">Valencià</a>
+        <a href="castella/index.html">Castellà</a>
+        <a href="cientificotecnologic/index.html">Científic</a>
+        <a href="social/index.html">Socials</a>
+        <a href="matematica/index.html">Matemàtica</a>
+        <a href="bxb.html">BxB</a>
+      </div>
+      <p>Aula Pep · Disseny modern i organització de recursos</p>
+    </footer>
+  </div>
 </body>
 </html>

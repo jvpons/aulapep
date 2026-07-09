@@ -33,21 +33,25 @@ Web en proves: https://jvpons.github.io/aulapep/
 ```
 aulapep/
 ├── index.html                 # Pàgina principal
-├── styles.css               # Estils globals
-├── README.md                # Aquest arxiu
-├── castella/                # Sección de Castellano
+├── styles.css                 # Estils globals compartits
+├── README.md                  # Aquest arxiu
+├── assets/
+│   ├── css/
+│   │   └── styles.css         # Estils moderns del portal
+│   └── images/               # Imatges i il·lustracions organitzades
+├── castella/
 │   ├── index.html
 │   ├── castellano.html
 │   ├── tema-verbo.html
 │   └── css/
-├── valencia/                # Sección de Valenciano (en desarrollo)
-├── cientificotecnologic/    # Sección de Científico-Tecnológico
-├── social/                  # Sección de Sociales
-├── matematica/              # Sección de Matemáticas
-└── bxb.html                # Sección BxB
+├── valencia/
+├── cientificotecnologic/
+├── social/
+├── matematica/
+└── bxb.html                  # Secció BxB
 ```
 
-Cada sección conté:
+Cada secció conté:
 - **Recursos**: Materials de referència i documentació
 - **Activitats**: Propostes didàctiques
-- **Assets**: Arxius multimèdia (àudio, fonts, imatges)
+- **Assets**: Arxius multimèdia i imatges organitzades dins de la carpeta assets

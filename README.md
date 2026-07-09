@@ -2,10 +2,10 @@
 
 ## Descripció del Projecte
 
-**Aula Pep** és una plataforma web educativa dissenyada per a docents. Ofereix un entorn càlid i inspirador amb recursos, materials didàctics i activitats organitzades per diferents àmbits i idiomes.
+**Aula Pep** és una plataforma web educativa dissenyada per a l'alumnat i també per a docents. Ofereix un entorn càlid i inspirador amb recursos, materials didàctics i activitats organitzades per diferents àmbits i idiomes.
 
 ### Objectiu
-Facilitar als docents un espai centralitzat d'accés a materials de qualitat per a les diverses disciplines que imparteixen, fomentant la innovació educativa i el compartir de bones pràctiques.
+Facilitar a l'alumnat i als docents un espai centralitzat d'accés a materials de qualitat per a les diverses disciplines que imparteixen, fomentant la innovació educativa i el compartir de bones pràctiques.
 
 ## 🎯 Àmbits Temàtics
 
@@ -22,7 +22,7 @@ La plataforma està organitzada en els següents àmbits:
 
 ⚠️ **EL PROJECTE ESTÀ EN CONSTRUCCIÓ**
 
-Actualment, la plataforma es troba en desenvolupament. Alguns àmbits i recursos estan sendo desarrollats i no totes les seccions estan completament funcionals.
+Actualment, la plataforma es troba en fase de desenvolupament. Alguns àmbits i recursos encara s'estan desenvolupant, i no totes les seccions són plenament funcionals.
 
 ## 🔗 Accés
 
